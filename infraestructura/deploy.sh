@@ -183,7 +183,7 @@ export ALB_ARN=$(aws elbv2 create-load-balancer \
 
 ## LISTENER
 
-export LISTENER_ARN $(aws elbv2 create-listener \
+export LISTENER_ARN=$(aws elbv2 create-listener \
   --load-balancer-arn $ALB_ARN \
   --protocol HTTP \
   --port 80 \

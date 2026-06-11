@@ -27,10 +27,6 @@ done
 
 ## LISTENER
 
-aws elbv2 delete-listener \
-  --listener-arn "$LISTENER_ARN" \
-  --region "$AWS_REGION" || true
-
 ## ALB
 
 aws elbv2 delete-load-balancer \
@@ -80,17 +76,11 @@ aws ec2 delete-route-table \
 aws ec2 detach-internet-gateway \
   --internet-gateway-id "$IGW_ID" \
   --vpc-id "$VPC_ID" \
-  --region us-east-1
+  --region us-east-1 || true
 
-aws ec2 delete-route \
-  --route-table-id "$PUBLIC_RT_ID" \
-  --destination-cidr-block 0.0.0.0/0
-
-aws ec2 detach-internet-gateway \
+aws ec2 delete-internet-gateway \
   --internet-gateway-id "$IGW_ID" \
-  --vpc-id "$VPC_ID" \
-  --region us-east-1 ||
-  true
+  --region us-east-1 || true
 
 ## SUBNETS
 
