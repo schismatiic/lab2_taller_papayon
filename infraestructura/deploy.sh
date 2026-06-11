@@ -66,19 +66,8 @@ export SUBNET_B_ID=$(
     --output text
 )
 
-export PRIVATE_SUBNET_ID=$(
-  aws ec2 create-subnet \
-    --vpc-id $VPC_ID \
-    --cidr-block 10.0.3.0/24 \
-    --availability-zone us-east-1b \
-    --region us-east-1 \
-    --query 'Subnet.SubnetId' \
-    --output text
-)
-
 echo "Subnet Ids"
 echo "Public: $SUBNET_A_ID on us-east-1a and $SUBNET_B_ID on us-east-1b"
-echo "Private: $PRIVATE_SUBNET_ID"
 
 ## Gateways
 
@@ -194,12 +183,12 @@ export ALB_ARN=$(aws elbv2 create-load-balancer \
 
 ## LISTENER
 
-aws elbv2 create-listener \
+export LISTENER_ARN $(aws elbv2 create-listener \
   --load-balancer-arn $ALB_ARN \
   --protocol HTTP \
   --port 80 \
   --default-actions Type=forward,TargetGroupArn=$TG_ARN \
-  --region $AWS_REGION
+  --region $AWS_REGION)
 
 ## TASKDEF
 
