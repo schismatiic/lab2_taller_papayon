@@ -203,34 +203,6 @@ aws elbv2 create-listener \
 
 ## TASKDEF
 
-## DEFINIMOS ROL DE ECS ANTES
-
-aws iam get-role --role-name ecsTaskExecutionRole
-
-cat >trust.json <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": { "Service": "ecs-tasks.amazonaws.com" },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-
-aws iam create-role \
-  --role-name ecsTaskExecutionRole \
-  --assume-role-policy-document file://trust.json
-
-aws iam attach-role-policy \
-  --role-name ecsTaskExecutionRole \
-  --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
-
-echo "Esperando por el rol de ecs..."
-sleep 27
-
 ##
 cat >taskdef.json <<JSON
 { "family": "$APP", "networkMode": "awsvpc",
