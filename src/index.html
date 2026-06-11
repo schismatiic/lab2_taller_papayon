@@ -15,8 +15,7 @@
 <body>
     <header class="hero">
         <nav class="navbar">
-            <h1><span>PapaRuta</span> - Los Lagos</h1>
-            <a href="#locales">Ruta Papayon</a>
+            <h1><span>PapaRuta</span> Los Lagos</h1>
         </nav>
 
         <section class="hero-content">
@@ -31,58 +30,58 @@
     </header>
 
     <main>
-        <section class="intro" id="info">
-            <h2>¿Qué es PapaRuta?</h2>
-            <img class="route-map" src="./assets/mapa.png" alt="Mapa de conexiones PapaRuta Los Lagos">
-            <p>
-                PapaRuta Los Lagos es una plataforma turística que invita
-                a descubrir locales de Papa John’s en la Región de Los Lagos como puntos
-                de encuentro para viajeros, estudiantes y familias.
-            </p>
+        <div class="view-toggle">
+            <button class="view-btn active" data-view="home">Inicio</button>
+            <button class="view-btn" data-view="drivers">Choferes</button>
+            <button class="view-btn" data-view="about">Acerca de</button>
+        </div>
+        <section class="view active-view" id="home-view">
+            <section class="intro" id="info">
+                <h2>¿Qué es PapaRuta?</h2>
+                <img class="route-map" src="./assets/mapa.png" alt="Mapa de conexiones PapaRuta Los Lagos">
+                <p>
+                    PapaRuta Los Lagos es una plataforma turística que invita
+                    a descubrir locales de Papa John’s en la Región de Los Lagos como puntos
+                    de encuentro para viajeros, estudiantes y familias.
+                </p>
+            </section>
+            <section id="locales" class="places">
+
+
+            </section>
+            <section class="cta">
+                <h2>Explora, fotografía y comparte</h2>
+                <p>Nos complace ayudar a familias a encontrar su lugar y ser uno con Papa John's</p>
+                <img src="./assets/clientes_satisfechos.png" alt="Clientes satisfechos con el servicio :D">
+            </section>
         </section>
-
-        <section id="locales" class="places">
-            <h2>Locales destacados</h2>
-
-            <div class="cards">
-                <article class="card">
-                    <img src="./assets/Papayon clásico.png" alt="Pizza artesanal" />
-                    <div>
-                        <h3>Papa John’s clásico (Base de operaciones Luinux)</h3>
-                        <p>Hogar del mítico Papayón de los Notros, este local constituye la Base
-                            de Operaciones Luinux. Su ubicación estratégica
-                            cerca de la casa del Benja y del Andrés la base ideal.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="https://z-p3-scontent.fccp5-1.fna.fbcdn.net/v/t39.30808-6/596774815_1464832485202831_4497504405034292164_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1080&ctp=s1440x1080&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=NXF8PBdit1QQ7kNvwFlrjx_&_nc_oc=Adr5Jkk77kU-4r8Dxzdj_zWExBL8gtRPZJy8F4AmDjfBq5k8CKqq5rx-6YU96xsH0Fk&_nc_zt=23&_nc_ht=z-p3-scontent.fccp5-1.fna&_nc_gid=xXoOzST6ffHHhLlnTKrXrQ&_nc_ss=7b289&oh=00_Af81jyg28m_iBfdQSf_TLCSZANJAhqEPHALC3GVM7R8XxA&oe=6A2BBB68"
-                        alt="Papayon de Castro" />
-                    <div>
-                        <h3>Papa John’s Castro</h3>
-                        <p>Una parada gastronómica ideal para iniciar o cerrar un recorrido por Chiloé.</p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/3e/c2/30/caption.jpg?w=500&h=-1&s=1"
-                        alt="Papayon de Puerto Varas" />
-                    <div>
-                        <h3>Papa John's Puerto Varas</h3>
-                        <p>Propuesta pensada para visitantes que buscan comida rápida, accesible y reconocible.</p>
-                    </div>
-                </article>
+        <section class="view page-view" id="drivers-view">
+            <h2>Información de choferes</h2>
+            <p>
+                Nuestros choferes son los encargados de conectar cada punto de la PapaRuta Los Lagos.
+                Desde la Base de Operaciones Luinux en Los Notros, acompañan los recorridos hacia
+                distintos locales destacados de la región, llegando a los confines más apartados del mundo (Chiloé).
+            </p>
+            <div class="driver-card">
+                <img src="./assets/cristochofer.jpg" alt="Chofer de PapaRuta Los Lagos">
+                <div>
+                    <h3>John Papayón</h3>
+                    <p>
+                        Chofer oficial de PapaRuta Los Lagos. Experto en rutas gastronómicas,
+                        degustación de picsas y expediciones hacia el sur.
+                    </p>
+                </div>
             </div>
         </section>
-
-        <section class="cta">
-            <h2>Explora, fotografía y comparte</h2>
-            <p>Nos complace ayudar a familias a encontrar su lugar y ser uno con Papa John's</p>
-            <img src="./assets/clientes_satisfechos.png" alt="Clientes satisfechos con el servicio :D">
+        <section class="view page-view" id="about-view">
+            <h2>Acerca de PapaRuta Los Lagos</h2>
+            <p>
+                PapaRuta Los Lagos es una plataforma de turismo gastronómico con temática principal de Papa John's. El
+                sitio presenta los locales de Papa John's como puntos de interés en toda la región de Los Lagos. Además,
+                tiene un apartado para conocer al chofer y saber más sobre las rutas disponibles.
+            </p>
         </section>
     </main>
-
     <footer>
         <p>© 2026 PapaRuta Los Lagos. Todos los derechos reservados. - John Papayon Itself</p>
     </footer>
