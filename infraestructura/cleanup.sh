@@ -3,46 +3,29 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../vars.sh"
 
-SERVICE_ARNs=$(aws ecs list-services \
-  --cluster "$CLUSTER" \
-  --region "$AWS_REGION" \
-  --query "serviceArns[]" \
-  --output text)
+aws ecs update-service --cluster $CLUSTER --service "${APP}-svc" --desired-count 0
+aws ecs delete-service --cluster $CLUSTER --service "${APP}-svc" --force
 
-for s in $SERVICE_ARNs; do
-  aws ecs update-service \
-    --cluster "$CLUSTER" \
-    --service "$s" \
-    --desired-count 0 \
-    --region "$AWS_REGION" ||
-    true
+sleep 22
 
-  aws ecs delete-service \
-    --cluster "$CLUSTER" \
-    --service "$s" \
-    --force \
-    --region "$AWS_REGION" ||
-    true
-done
+aws ecs delete-cluster --cluster $CLUSTER
 
-## LISTENER
-
+sleep 15
 ## ALB
 
 aws elbv2 delete-load-balancer \
   --load-balancer-arn "$ALB_ARN" \
+  --region "$AWS_REGION"
+
+aws elbv2 wait load-balancers-deleted \
+  --load-balancer-arns "$ALB_ARN" \
   --region "$AWS_REGION" || true
 
+sleep 22
 ## TG
 
 aws elbv2 delete-target-group \
   --target-group-arn "$TG_ARN" \
-  --region "$AWS_REGION" || true
-
-## CLUSTER
-
-aws ecs delete-cluster \
-  --cluster "$CLUSTER" \
   --region "$AWS_REGION" || true
 
 ## SG
