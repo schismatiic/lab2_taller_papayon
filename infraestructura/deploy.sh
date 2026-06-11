@@ -20,19 +20,19 @@ fi
 ## Si no esta en json no funcionara
 
 ## construimos la version 1.0 del negocio
-docker build -t paparuta:1.1 .
+docker build -t paparuta:1.2 .
 #docker run --rm -p 8080:80 paparuta:1.0 &
 export TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 export APP=paparuta
 ## Pusheamos la version 1.0
 export AWS_REGION=us-east-1
-epoxrt ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+export ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 export REPO=paparuta
 aws ecr create-repository --repository-name $REPO --region $AWS_REGION
 aws ecr get-login-password --region $AWS_REGION |
   docker login --username AWS --password-stdin $ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com
-export IMG=$ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO:1.0
-docker tag paparuta:1.0 $IMG && docker push $IMG
+export IMG=$ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO:1.2
+docker tag paparuta:1.2 $IMG && docker push $IMG
 
 ## El comando retornara un json asi que lo usaremos de variable
 export VPC_ID=$(aws ec2 create-vpc \
