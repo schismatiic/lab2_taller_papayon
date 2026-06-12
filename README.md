@@ -1,6 +1,7 @@
 # **Deploy de Paparuta en AWS**
 
 ![Captura del sitio web](/documentacion/capturas/ReadmePage.png)
+![Captura de nuestro chofer](/documentacion/capturas/chofer.png)
 
 ## Descripcion
 Paparuta es un servicio de turismo que te invita a explorar la decima region de Chile a travez de sus locales de Papa Jonh's. 
