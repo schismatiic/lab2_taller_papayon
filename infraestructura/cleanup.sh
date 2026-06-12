@@ -1,4 +1,5 @@
 ## BORRAR TODO DESDE LA ULTIMA VEZ QUE SE EJECUTO deploy.sh
+## Perdon profe por los sleep pero es la forma mas facil de deshacerse de las dependencias
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../vars.sh"
@@ -6,11 +7,11 @@ source "$SCRIPT_DIR/../vars.sh"
 aws ecs update-service --cluster $CLUSTER --service "${APP}-svc" --desired-count 0
 aws ecs delete-service --cluster $CLUSTER --service "${APP}-svc" --force
 
-sleep 22
+sleep 40
 
 aws ecs delete-cluster --cluster $CLUSTER
 
-sleep 15
+sleep 40
 ## ALB
 
 aws elbv2 delete-load-balancer \
@@ -21,7 +22,7 @@ aws elbv2 wait load-balancers-deleted \
   --load-balancer-arns "$ALB_ARN" \
   --region "$AWS_REGION" || true
 
-sleep 22
+sleep 40
 ## TG
 
 aws elbv2 delete-target-group \
@@ -30,9 +31,13 @@ aws elbv2 delete-target-group \
 
 ## SG
 
+sleep 30
+
 aws ec2 delete-security-group \
   --group-id "$SG_ID" \
   --region "$AWS_REGION" || true
+
+sleep 20
 
 ## RouteTables
 
@@ -54,6 +59,8 @@ aws ec2 delete-route-table \
   --region us-east-1 ||
   true
 
+sleep 20
+
 ## IGW
 
 aws ec2 detach-internet-gateway \
@@ -65,6 +72,8 @@ aws ec2 delete-internet-gateway \
   --internet-gateway-id "$IGW_ID" \
   --region us-east-1 || true
 
+sleep 20
+
 ## SUBNETS
 
 aws ec2 delete-subnet \
@@ -72,10 +81,14 @@ aws ec2 delete-subnet \
   --region us-east-1 ||
   true
 
+sleep 20
+
 aws ec2 delete-subnet \
   --subnet-id "$SUBNET_B_ID" \
   --region us-east-1 ||
   true
+
+sleep 20
 
 ## VPC
 
@@ -83,3 +96,5 @@ aws ec2 delete-vpc \
   --vpc-id "$VPC_ID" \
   --region us-east-1 ||
   true
+
+echo "Done"
