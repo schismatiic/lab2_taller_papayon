@@ -13,7 +13,7 @@ Una experiencia que invita a los amantes de la pizza a explorar esta maravillosa
 - Leonardo Jofre
 - Emilia Osores
 
-## IP publica del deploy.
+## URL del deploy.
 - URL de Amazon [papa-alb-20260612-110737-2115880245.us-east-1.elb.amazonaws.com](http://papa-alb-20260612-110737-2115880245.us-east-1.elb.amazonaws.com/)
 - URL con DNS a dominio [paparuta.maidkissa.moe](http://paparuta.maidkissa.moe/)
 
@@ -45,5 +45,5 @@ chmod +x infraestructura/cleanup.sh
 ---
 
 ## Documentacion.
-- Arquitectura `/documentacion/arquitectura.pdf`
+- Informe `/documentacion/informe.pdf`
 - Proceso `/documentacion/capturas/`
